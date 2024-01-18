@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Player({ initialName, symbol, isActive }) {
+function Player({ initialName, symbol, isActive, onChangeName }) {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
   function handleChange(event) {
@@ -8,6 +8,9 @@ function Player({ initialName, symbol, isActive }) {
   }
   function handleEditClick() {
     setIsEditing((editing) => !editing);
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
   let editablePlayerName = <span className="player-name">{playerName}</span>;
   //let btnCaption = "Edit";
